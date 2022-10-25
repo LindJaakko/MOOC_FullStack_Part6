@@ -1,3 +1,5 @@
+import { computeHeadingLevel } from '@testing-library/react'
+
 const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -21,6 +23,8 @@ const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'NEW_ANECDOTE':
+      return [...state, action.data]
     case 'VOTE':
       const id = action.data.id
       const anecdoteToChange = state.find((n) => n.id === id)
@@ -28,7 +32,9 @@ const reducer = (state = initialState, action) => {
         ...anecdoteToChange,
         votes: anecdoteToChange.votes + 1,
       }
-      return state.map((note) => (note.id !== id ? note : changedAnecdote))
+      return state.map((anecdote) =>
+        anecdote.id !== id ? anecdote : changedAnecdote
+      )
     default:
       return state
   }
