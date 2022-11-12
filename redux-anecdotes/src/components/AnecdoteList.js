@@ -7,7 +7,7 @@ import {
 
 const Anecdotes = () => {
   const dispatch = useDispatch()
-  const anecdotes = useSelector((state) => state.anecdotes)
+  const { anecdotes, filter } = useSelector((state) => state)
 
   const vote = (id) => {
     dispatch(voteAnecdote(id))
@@ -20,8 +20,8 @@ const Anecdotes = () => {
 
   return (
     <div>
-      <h2>Anecdotes</h2>
       {anecdotes
+        .filter((anecdote) => anecdote.content.includes(filter))
         .sort((a, b) => b.votes - a.votes)
         .map((anecdote) => (
           <div key={anecdote.id}>
