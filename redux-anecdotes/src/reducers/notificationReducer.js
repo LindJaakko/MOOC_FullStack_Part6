@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { connect } from 'react-redux'
 
 const initialState = null
 
