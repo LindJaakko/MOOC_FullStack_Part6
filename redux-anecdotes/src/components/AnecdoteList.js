@@ -10,8 +10,8 @@ const Anecdotes = () => {
   const { anecdotes, filter } = useSelector((state) => state)
 
   const vote = (id) => {
-    dispatch(voteAnecdote(id))
     const anecdote = anecdotes.find((n) => n.id === id)
+    dispatch(voteAnecdote(anecdote))
     dispatch(setNotification(`you voted '${anecdote.content}'`))
     setTimeout(() => {
       dispatch(clearNotification())

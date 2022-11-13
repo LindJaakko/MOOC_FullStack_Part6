@@ -4,7 +4,6 @@ import {
   setNotification,
   clearNotification,
 } from '../reducers/notificationReducer'
-import anecdoteService from '../services/anecdotes'
 
 const NewAnecdote = (props) => {
   const dispatch = useDispatch()
